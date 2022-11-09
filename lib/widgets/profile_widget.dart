@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/counter.dart';
 
 class ProfileWiget extends StatelessWidget {
   const ProfileWiget({super.key});
@@ -47,9 +50,9 @@ class ProfileWiget extends StatelessWidget {
             ElevatedButton(
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
                 onPressed: () {},
-                child: const Text(
-                  'Favorite',
-                  style: TextStyle(color: Colors.white),
+                child: Text(
+                  'Favorite ${context.watch<Counter>().number.toString()}',
+                  style: const TextStyle(color: Colors.white),
                 )),
             const SizedBox(
               height: 10,
