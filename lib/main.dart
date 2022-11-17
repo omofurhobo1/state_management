@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stateapp/providers/counter.dart';
+import 'package:stateapp/providers/favorite.dart';
 import 'package:stateapp/screens/home_screen.dart';
 
 void main() {
   runApp(MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => Counter())],
+      providers: [ChangeNotifierProvider(create: (_) => Counter()),
+      ChangeNotifierProvider(create: (_)=>FavoriteProvider())],
       child: const MyApp()));
 }
 

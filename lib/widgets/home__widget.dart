@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:stateapp/providers/favorite.dart';
 
 class HomeWidget extends StatelessWidget {
   const HomeWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const ContactList();
-  }
-}
+    final myfav = Provider.of<FavoriteProvider>(context);
 
-class ContactList extends StatelessWidget {
-  const ContactList({super.key});
-
-  @override
-  Widget build(BuildContext context) {
     return ListView.builder(
         itemCount: 10,
         itemBuilder: (context, index) {
@@ -27,7 +22,9 @@ class ContactList extends StatelessWidget {
               ),
               subtitle: const Text("0803-5202-188"),
               trailing: ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    myfav.addFavorite(index);
+                  },
                   icon: const Icon(Icons.add),
                   label: const Text("Add")),
             ),
@@ -35,3 +32,12 @@ class ContactList extends StatelessWidget {
         });
   }
 }
+
+//class ContactList extends StatelessWidget {
+  //const ContactList({super.key});
+
+ // @override
+  //Widget build(BuildContext context) {
+    
+  //}
+//}

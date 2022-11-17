@@ -60,7 +60,7 @@ class ProfileWiget extends StatelessWidget {
             Container(
               decoration: const BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(40))),
+                  borderRadius: BorderRadius.all(Radius.circular(60))),
               height: 300,
               child: Column(
                 children: const [

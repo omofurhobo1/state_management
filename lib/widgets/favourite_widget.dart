@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
-import 'package:stateapp/providers/counter.dart';
+import 'package:stateapp/providers/favorite.dart';
 
 class Favorite extends StatefulWidget {
   const Favorite({super.key});
@@ -15,25 +14,28 @@ class _FavoriteState extends State<Favorite> {
   // int num = 0;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              context.watch<Counter>().number.toString(),
-              style: const TextStyle(fontSize: 40),
-            ),
-            const Gap(50),
-            ElevatedButton.icon(
-                onPressed: () {
-                  context.read<Counter>().increment();
-                },
-                icon: const Icon(Icons.add),
-                label: const Text('Increase'))
-          ],
-        ),
-      ),
-    );
+    return Consumer<FavoriteProvider>(builder: (context, index, child) {
+      return ListView.builder(itemBuilder: (context, ind) {
+        return ListTile(
+          leading: ClipRRect(
+            borderRadius: BorderRadius.circular(30),
+            child: Image.asset("asset/images/model1.jpeg"),
+          ),
+          title: Text(
+            "Vincet Ruby ${index.favoriteContacts[ind]}",
+            style: const TextStyle(color: Colors.blue),
+          ),
+          subtitle: const Text("0804-553-890"),
+          trailing: IconButton(
+            onPressed: () {
+              Provider.of<FavoriteProvider>(context, listen: false)
+                  .removeFavorite(index.favoriteContacts[ind]);
+            },
+            icon: const Icon(Icons.cancel_sharp),
+            color: Colors.red,
+          ),
+        );
+      });
+    });
   }
 }
